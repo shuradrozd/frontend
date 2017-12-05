@@ -1,8 +1,9 @@
-<div class="form-group">
-  <button class="btn btn-primary">Load Books</button>
-  <ul class="group-list">
-    <li class="group-list-item" *ngFor="let book of books">
-      <span class="badge">{{id}}</span>{{book.name}}
+<div class="col-xs-8 col-xs-offset-2">
+  <button class="btn btn-primary" (click)="loadBooks()">Load Books</button>
+  <hr>
+  <ul class="list-group">
+    <li class="list-group-item" *ngFor="let book of books">
+      <span class="badge">{{book?.id}}</span>{{book.name}}
     </li>
   </ul>
 </div>
