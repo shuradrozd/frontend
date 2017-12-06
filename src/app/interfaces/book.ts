@@ -1,7 +1,8 @@
 export interface Book {
-  id: number;
+  index: number;
   author: string;
   name: string;
   orderDate: string;
   user: string;
+  id: number;
 }

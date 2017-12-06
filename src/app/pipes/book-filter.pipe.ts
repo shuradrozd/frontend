@@ -6,7 +6,7 @@ import { Pipe, PipeTransform } from '@angular/core';
 export class BookFilterPipe implements PipeTransform {
 
   transform(bookList, searchString: string, searchFieldName: string) {
-    if (bookList.length === 0 || searchString === '' ) {
+    if (bookList.length === 0 || searchString.trim() === '' ) {
       return bookList;
     }
     return bookList.filter((book) => (book[searchFieldName].toLowerCase().indexOf(searchString.toLowerCase()) !== -1));

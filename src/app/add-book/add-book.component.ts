@@ -1,4 +1,4 @@
-import {Component, Input} from '@angular/core';
+import {Component} from '@angular/core';
 import {BooksService} from '../books.service';
 import {Book} from '../interfaces/book';
 
@@ -14,11 +14,11 @@ import {Book} from '../interfaces/book';
 export class AddBookComponent {
   bookName = '';
   constructor(private booksService: BooksService) {}
-
   addBook() {
     this.booksService
       .addBook(this.bookName)
       .subscribe((book: Book) => {
+        console.log(book);
       });
     this.bookName = '';
 

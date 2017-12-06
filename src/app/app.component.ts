@@ -9,6 +9,7 @@ import {Book} from './interfaces/book';
 })
 export class AppComponent {
   searchString = '';
+  searchFieldName = '';
   books: Book[] = [];
 
   constructor(private booksService: BooksService) {}
@@ -24,12 +25,29 @@ export class AppComponent {
   }
   setOrderDate(book: Book) {
     const orderDate = new Date().toDateString();
-    // console.log(id);
     this.booksService.changeOrderDate(book, orderDate)
-      .subscribe();
-    // .subscribe((data) => {
-      //   console.log(data);
-      // });
-    // this.books[id - 1].orderDate = new Date().toDateString();
+    .subscribe((data) => {
+        console.log(data);
+      });
   }
+
+  cancelOrderDate(book: Book) {
+    const orderDate = '';
+    this.booksService.deleteOrderDate(book, orderDate)
+    .subscribe((data) => {
+      console.log(data);
+    });
+  }
+
+  checkOrderDate(date: string) {
+    if (date.length > 0) {
+      return true;
+    }
+    return false;
+  }
+
+  filter(event: Event ) {
+    this.searchFieldName = (<HTMLInputElement>event.target).value;
+  }
+
 }

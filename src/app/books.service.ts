@@ -7,7 +7,7 @@ export class BooksService {
 
   books: Book[] = [];
 
-  constructor(private http: Http) { }
+  constructor(private http: Http) {}
 
   getBooks() {
     return this.http.get('http://localhost:3000/books')
@@ -20,12 +20,11 @@ export class BooksService {
 
   addBook(bookName: string) {
     const book = {
-      bookId: '1000',
+      index: '1000',
       author: 'test',
       name: bookName,
-      orderDate: '10-10-2010',
-      user: 'test'
-
+      orderDate: '',
+      user: ''
     };
 
     return this.http.post('http://localhost:3000/books', book)
@@ -34,10 +33,16 @@ export class BooksService {
         this.books.push(item_book);
       });
   }
+
   changeOrderDate(book: Book, orderDate: string) {
     book.orderDate = orderDate;
     return this.http.put(`http://localhost:3000/books/${book.id}`, book)
       .map((response: Response) => response.json());
+  }
 
+  deleteOrderDate(book: Book, orderDate: string) {
+    book.orderDate = orderDate;
+    return this.http.put(`http://localhost:3000/books/${book.id}`, book)
+      .map((response: Response) => response.json());
   }
 }

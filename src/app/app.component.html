@@ -1,19 +1,29 @@
-
 <div class="col-xs-8 col-xs-offset-2">
   <app-add-book></app-add-book>
   <hr>
   <div class="form-group">
-    <label>Search:<input type="text" class="form-control" [(ngModel)]="searchString">
-    </label>
+    <h4>Search</h4>
+    <div class="form-check">
+      <label class="form-check-label">
+        <input class="form-check-input" type="radio" name="search" value="author" (change)="filter($event)">
+        By Author:
+      </label>
+      <label class="form-check-label">
+        <input class="form-check-input" type="radio" name="search" value="name" (change)="filter($event)">
+        By Name:
+      </label>
+    </div>
+    <input type="text" class="form-control" [(ngModel)]="searchString" [disabled]="!searchFieldName.length">
   </div>
   <hr>
   <button class="btn btn-primary" (click)="loadBooks()">Load Books</button>
   <hr>
   <ul class="list-group">
-    <li class="list-group-item" *ngFor="let book of books | bookFilter:searchString:'name'; let lineNumber = index">
-      <span class="badge" [ngStyle]="{backgroundColor: '#f00'}">{{lineNumber + 1}}</span>
-      {{book.author}}-{{book.orderDate}}{{book.name}}
-      <button class="btn btn-xs btn-info" (click)="setOrderDate(book)">Order book</button>
+    <li class="list-group-item" *ngFor="let book of books | bookFilter:searchString:searchFieldName; let lineNumber = index">
+      <span class="badge order" [ngClass]="{'ordered': checkOrderDate(book.orderDate)}">{{lineNumber + 1}}</span>
+      <button class="btn btn-xs btn-info" (click)="setOrderDate(book)" [disabled]="checkOrderDate(book.orderDate)">Order</button>
+      <button class="btn btn-xs btn-danger" (click)="cancelOrderDate(book)" [disabled]="!checkOrderDate(book.orderDate)">Cancel</button>
+      <strong>{{book.author}}</strong> - {{book.name}}
     </li>
   </ul>
 </div>

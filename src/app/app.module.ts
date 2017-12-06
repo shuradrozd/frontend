@@ -5,7 +5,7 @@ import { AppComponent } from './app.component';
 import {BooksService} from './books.service';
 import {HttpModule} from '@angular/http';
 import {FormsModule} from '@angular/forms';
-import { BookFilterPipe } from './book-filter.pipe';
+import { BookFilterPipe } from './pipes/book-filter.pipe';
 import { AddBookComponent } from './add-book/add-book.component';
 
 @NgModule({
