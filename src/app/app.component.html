@@ -1,11 +1,19 @@
+
 <div class="col-xs-8 col-xs-offset-2">
-  <input type="text" class="form-control" [(ngModel)]="searchString">
+  <app-add-book></app-add-book>
+  <hr>
+  <div class="form-group">
+    <label>Search:<input type="text" class="form-control" [(ngModel)]="searchString">
+    </label>
+  </div>
   <hr>
   <button class="btn btn-primary" (click)="loadBooks()">Load Books</button>
   <hr>
   <ul class="list-group">
     <li class="list-group-item" *ngFor="let book of books | bookFilter:searchString:'name'; let lineNumber = index">
-      <span class="badge">{{lineNumber + 1}}</span>{{book.author}} {{book.name}} {{book.orderDate}}
+      <span class="badge" [ngStyle]="{backgroundColor: '#f00'}">{{lineNumber + 1}}</span>
+      {{book.author}}-{{book.orderDate}}{{book.name}}
+      <button class="btn btn-xs btn-info" (click)="setOrderDate(book)">Order book</button>
     </li>
   </ul>
 </div>
