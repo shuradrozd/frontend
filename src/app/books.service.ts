@@ -40,9 +40,4 @@ export class BooksService {
       .map((response: Response) => response.json());
   }
 
-  deleteOrderDate(book: Book, orderDate: string) {
-    book.orderDate = orderDate;
-    return this.http.put(`http://localhost:3000/books/${book.id}`, book)
-      .map((response: Response) => response.json());
-  }
 }

@@ -23,6 +23,13 @@ export class AppComponent {
         console.log(error);
         });
   }
+  onChangeStatus(book: Book) {
+    if (this.checkOrderDate(book.orderDate)) {
+      this.cancelOrderDate(book);
+    } else {
+      this.setOrderDate(book);
+    }
+  }
   setOrderDate(book: Book) {
     const orderDate = new Date().toDateString();
     this.booksService.changeOrderDate(book, orderDate)
@@ -31,9 +38,10 @@ export class AppComponent {
       });
   }
 
+
   cancelOrderDate(book: Book) {
     const orderDate = '';
-    this.booksService.deleteOrderDate(book, orderDate)
+    this.booksService.changeOrderDate(book, orderDate)
     .subscribe((data) => {
       console.log(data);
     });

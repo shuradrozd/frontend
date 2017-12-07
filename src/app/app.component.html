@@ -21,8 +21,7 @@
   <ul class="list-group">
     <li class="list-group-item" *ngFor="let book of books | bookFilter:searchString:searchFieldName; let lineNumber = index">
       <span class="badge order" [ngClass]="{'ordered': checkOrderDate(book.orderDate)}">{{lineNumber + 1}}</span>
-      <button class="btn btn-xs btn-info" (click)="setOrderDate(book)" [disabled]="checkOrderDate(book.orderDate)">Order</button>
-      <button class="btn btn-xs btn-danger" (click)="cancelOrderDate(book)" [disabled]="!checkOrderDate(book.orderDate)">Cancel</button>
+      <input type="button" class="btn btn-xs btn-info" (click)="onChangeStatus(book)" [ngClass]="{'ordered': checkOrderDate(book.orderDate)}" [value]= "checkOrderDate(book.orderDate)? 'Ordered': 'Order'">
       <strong>{{book.author}}</strong> - {{book.name}}
     </li>
   </ul>
