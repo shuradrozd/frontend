@@ -1,4 +1,4 @@
-import {Component} from '@angular/core';
+import {Component, OnInit} from '@angular/core';
 import {BooksService} from './books.service';
 import {Book} from './interfaces/book';
 
@@ -7,10 +7,11 @@ import {Book} from './interfaces/book';
   templateUrl: './app.component.html',
   styleUrls: ['./app.component.css']
 })
-export class AppComponent {
+export class AppComponent implements OnInit{
   searchString = '';
   searchFieldName = '';
   books: Book[] = [];
+  appTitle: any;
 
   constructor(private booksService: BooksService) {}
 
@@ -56,6 +57,10 @@ export class AppComponent {
 
   filter(event: Event ) {
     this.searchFieldName = (<HTMLInputElement>event.target).value;
+  }
+  ngOnInit() {
+    this.appTitle = this.booksService.getTitle();
+
   }
 
 }
