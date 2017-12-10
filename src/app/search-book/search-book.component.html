@@ -1,0 +1,37 @@
+<div class="form-group">
+  <a routerLink="/books"><button class="btn btn-xs btn-danger">Update page</button></a>
+  <h4>Search</h4>
+  <div class="form-check">
+    <label class="form-check-label">
+      <input class="form-check-input" type="radio" name="search" value="author" (change)="filter($event)">
+      By Author:
+    </label>
+    <label class="form-check-label">
+      <input class="form-check-input" type="radio" name="search" value="name" (change)="filter($event)">
+      By Name:
+    </label>
+  </div>
+  <input type="text" class="form-control" [(ngModel)]="searchString" [disabled]="!searchFieldName.length">
+</div>
+<hr>
+<button class="btn btn-primary" (click)="loadBooks()">Load Books</button>
+<hr>
+<div class="row">
+  <div class="col-xs-7">
+    <ul class="list-group">
+      <li class="list-group-item" *ngFor="let book of books | bookFilter:searchString:searchFieldName; let lineNumber = index">
+        <span class="badge order pull-left " [ngClass]="{'ordered': checkOrderDate(book.orderDate)}">{{lineNumber + 1}}</span>&nbsp;
+        <input type="button" class="btn btn-xs btn-info pull-right" (click)="onChangeStatus(book)" [ngClass]="{'ordered': checkOrderDate(book.orderDate)}" [value]= "checkOrderDate(book.orderDate)? 'Ordered': 'Order'">
+        <span class="pull-right">&nbsp;&nbsp;</span>
+        <a
+          [routerLink]="['/books', book.id]"
+          [queryParams]="{index: book.index, author: book.author, name: book.name, orderDate: book.orderDate, user: book.user}"
+        ><button class="btn btn-xs btn-success pull-right">Detail</button></a>
+        <strong>{{book.author}}</strong> - {{book.name | uppercase}}
+      </li>
+    </ul>
+  </div>
+  <div class="col-xs-5">
+    <router-outlet></router-outlet>
+  </div>
+</div>

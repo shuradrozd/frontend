@@ -2,8 +2,6 @@ import {Component} from '@angular/core';
 import {BooksService} from '../books.service';
 import {Book} from '../interfaces/book';
 
-
-
 @Component({
   selector: 'app-add-book',
   templateUrl: './add-book.component.html',
