@@ -14,6 +14,8 @@ import { PageBookComponent } from './page-book/page-book.component';
 import { NotFoundComponent } from './not-found/not-found.component';
 import {AuthService} from './auth.service';
 import {AuthGuard} from './auth-guard.service';
+import {AuthModule} from './auth/auth.module';
+
 
 @NgModule({
   declarations: [
@@ -31,7 +33,8 @@ import {AuthGuard} from './auth-guard.service';
     BrowserModule,
     HttpModule,
     FormsModule,
-    AppRoutingModule
+    AppRoutingModule,
+    AuthModule
   ],
   providers: [BooksService, AuthService, AuthGuard],
   bootstrap: [AppComponent]
