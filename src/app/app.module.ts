@@ -15,6 +15,7 @@ import { NotFoundComponent } from './not-found/not-found.component';
 import {AuthService} from './auth.service';
 import {AuthGuard} from './auth-guard.service';
 import {AuthModule} from './auth/auth.module';
+import {AppRouteModule} from "./app-route.module";
 
 
 @NgModule({
@@ -34,7 +35,8 @@ import {AuthModule} from './auth/auth.module';
     HttpModule,
     FormsModule,
     AppRoutingModule,
-    AuthModule
+    AuthModule,
+    AppRouteModule // main  route module in application
   ],
   providers: [BooksService, AuthService, AuthGuard],
   bootstrap: [AppComponent]

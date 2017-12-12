@@ -1,3 +1,24 @@
-<p>
-  login works!
-</p>
+          <form class="form-horizontal" role="form">
+            <div class="form-group">
+              <div class="col-sm-2 col-sm-offset-1"><h4>Email</h4></div>
+              <div class="col-sm-10 col-sm-offset-1">
+                <input type="email" class="form-control" placeholder="Enter your email" required>
+              </div>
+            </div>
+            <div class="form-group">
+              <div class="col-sm-2 col-sm-offset-1"><h4>Password</h4></div>
+              <div class="col-sm-10 col-sm-offset-1">
+                <input type="password" class="form-control" placeholder="Enter your password" required>
+              </div>
+            </div>
+            <div class="form-group last">
+              <div class="col-sm-10 col-sm-offset-1">
+                <button type="submit" class="btn btn-info btn-sm btn-block">
+                  Sign in</button>
+              </div>
+              <div class="col-sm-2 col-sm-offset-1">&nbsp;</div>
+              <div class="col-sm-12 col-sm-offset-2">
+                No an account? <a routerLink="/registration">Register here!</a>
+              </div>
+            </div>
+          </form>

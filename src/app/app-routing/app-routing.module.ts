@@ -13,9 +13,9 @@ const appRoutes: Routes = [
   { path: 'books', component: SearchBookComponent, children: [
     { path: ':id', component: PageBookComponent}
   ], canActivate: [AuthGuard]},
-  { path: '', component: HomePageComponent},
-  {path: 'not-found', component: NotFoundComponent},
-  {path: '**', redirectTo: '/not-found'}
+  // { path: '', component: HomePageComponent},
+  // {path: 'not-found', component: NotFoundComponent},
+  // {path: '**', redirectTo: '/not-found'}
 ];
 
 @NgModule({
