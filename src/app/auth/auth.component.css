@@ -1,1 +1,17 @@
-
+h2, h4, span  {
+  color: lightslategray;
+}
+a {
+  text-decoration: none;
+}
+body {
+  -webkit-background-size: cover;
+  -moz-background-size: cover;
+  -o-background-size: cover;
+  background-size: cover;
+}
+.panel-info {
+  opacity: 1;
+  margin-top: 200px;
+}
+.form-group.last { margin-bottom: 0px; }

@@ -5,7 +5,7 @@ import {AddBookComponent} from '../add-book/add-book.component';
 import {SearchBookComponent} from '../search-book/search-book.component';
 import {Routes, RouterModule} from '@angular/router';
 import {PageBookComponent} from '../page-book/page-book.component';
-import {NotFoundComponent} from '../not-found/not-found.component';
+import {NotFoundComponent} from '../general/components/not-found/not-found.component';
 import {AuthGuard} from '../auth-guard.service';
 
 const appRoutes: Routes = [

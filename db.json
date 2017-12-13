@@ -1,4 +1,12 @@
 {
+  "users": [
+  {
+    "id": 1,
+    "email": "test@test.by",
+    "password": "12345",
+    "name": "test"
+  }
+],
   "title": {
     "value": "Libraries WEB application"
   },

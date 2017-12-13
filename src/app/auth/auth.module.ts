@@ -5,14 +5,22 @@ import { LoginComponent } from './login/login.component';
 import { RegistrationComponent } from './registration/registration.component';
 import { AuthComponent } from './auth.component';
 import {AuthRouteModule} from './auth-route.module';
+import {GeneralModule} from '../general/general.module';
 
 
 
 @NgModule({
+
+  declarations: [
+    LoginComponent,
+    RegistrationComponent,
+    AuthComponent
+  ],
+
   imports: [
     CommonModule,
-    AuthRouteModule
-  ],
-  declarations: [LoginComponent, RegistrationComponent, AuthComponent]
+    AuthRouteModule,
+    GeneralModule // common module for forms ad reactiveForms
+  ]
 })
 export class AuthModule { }

@@ -13,6 +13,9 @@ body {
 }
 .panel-info {
   opacity: 1;
-  margin-top:150px;
+  margin-top: 200px;
 }
-.form-group.last { margin-bottom:0px; }
+.form-group.last { margin-bottom: 0px; }
+span {
+  color: #f00;
+}
