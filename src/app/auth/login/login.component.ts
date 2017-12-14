@@ -1,6 +1,10 @@
 import { Component, OnInit } from '@angular/core';
 import {FormControl, FormGroup, Validators} from '@angular/forms';
-import {UsersService} from "../../general/services/users.service";
+import {UsersService} from '../../general/services/users.service';
+import {User} from '../../general/models/user.model';
+import {Message} from '../../general/models/message.model';
+
+
 
 @Component({
   selector: 'app-login',
@@ -9,21 +13,41 @@ import {UsersService} from "../../general/services/users.service";
 })
 export class LoginComponent implements OnInit {
   form: FormGroup;
-  constructor(private usersService: UsersService) { }
+  message: Message;
+
+  constructor(private usersService: UsersService) {
+  }
 
   ngOnInit() {
+    this.message = new Message('danger', '');
     this.form = new FormGroup({
       'email': new FormControl(null, [Validators.required, Validators.email]),
       'password': new FormControl(null, [Validators.required, Validators.minLength(6)]),
     });
+
   }
 
+  private showMessage(text: string, type: string = 'danger') {
+    this.message = new Message(type, text);
+    window.setTimeout(() => {
+      this.message.text = '';
+    }, 5000);
+  }
 
-onSubmit() {
-  this.usersService.getUsers()
-    .subscribe((data) => {
-      console.log(data);
-    });
-}
+  onSubmit() {
+    const formData = this.form.value;
 
+    this.usersService.getUserByEmail(formData.email)
+      .subscribe((user: User) => {
+        if (user) {
+          if (user.password === formData.password) {
+            // console.log('welcome');
+          } else {
+            this.showMessage('Please enter correct password');
+          }
+        } else {
+          this.showMessage('This user doesn\'t exist');
+        }
+      });
+  }
 }
