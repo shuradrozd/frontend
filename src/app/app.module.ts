@@ -11,12 +11,13 @@ import { SearchBookComponent } from './search-book/search-book.component';
 import {AppRoutingModule} from './app-routing/app-routing.module';
 import { PageBookComponent } from './page-book/page-book.component';
 import { NotFoundComponent } from './general/components/not-found/not-found.component';
-import {AuthService} from './auth.service';
+import {AuthServiceOld} from './auth.service';
 import {AuthGuard} from './auth-guard.service';
 import {AuthModule} from './auth/auth.module';
 import {AppRouteModule} from './app-route.module';
 import {FormsModule, ReactiveFormsModule} from '@angular/forms';
 import {UsersService} from './general/services/users.service';
+import {AuthService} from './general/services/auth.service';
 
 
 @NgModule({
@@ -40,7 +41,7 @@ import {UsersService} from './general/services/users.service';
     AuthModule, // route module for authority pages (login, registration)
     AppRouteModule // main  route module in application
   ],
-  providers: [BooksService, AuthService, AuthGuard, UsersService],
+  providers: [BooksService, UsersService, AuthService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
