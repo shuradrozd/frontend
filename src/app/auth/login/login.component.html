@@ -18,11 +18,9 @@
                   formControlName="email"
                 >
                 <span *ngIf="form.get('email').invalid && form.get('email').touched">
-                  <span *ngIf="form.get('email')['errors']['required']" >The email must not be blank.</span>
+                  <span *ngIf="form.get('email')['errors']['required']" >The email should not be blank.</span>
                   <span *ngIf="form.get('email')['errors']['email'] && form.get('email').value" >Please enter correct email.</span>
                 </span>
-
-
               </div>
             </div>
             <div
@@ -38,7 +36,7 @@
                   formControlName="password"
                 >
                 <span *ngIf="form.get('password').invalid && form.get('password').touched">
-                  <span *ngIf="form.get('password')['errors']['required']">The password must not be blank.</span>
+                  <span *ngIf="form.get('password')['errors']['required']">The password should not be blank.</span>
                   <span *ngIf="form.get('password')['errors']['minlength']">
                     The password should be more than {{form.get('password')['errors']['minlength']['requiredLength']}} symbols.
                     Now you enter only {{form.get('password')['errors']['minlength']['actualLength']}}</span>

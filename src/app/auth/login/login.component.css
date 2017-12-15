@@ -26,3 +26,10 @@ span {
   font-weight: bold;
   text-align: center;
 }
+
+.alert-success {
+  background-color: #3cb371;
+  color: #fff;
+  font-weight: bold;
+  text-align: center;
+}
