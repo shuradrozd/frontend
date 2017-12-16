@@ -1,4 +1,4 @@
-# Libraries
+# Libraries Frontend Part
 
 This project was manage books catalog in some libraries. 
 
@@ -8,7 +8,7 @@ It let find books in one or some libraries, order books or return them.
 
 To start project you should run command for a dev server:
 
-`npm run dev`
+`npm run start`
  
 Navigate to `http://localhost:4200/`. The app will automatically reload if you change any of the source files.
 

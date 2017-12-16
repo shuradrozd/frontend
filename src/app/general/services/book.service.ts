@@ -1,21 +1,21 @@
 import { Injectable } from '@angular/core';
 import {Http, Response} from '@angular/http';
-import {Book} from './interfaces/book';
+import {Book} from '../models/book.model';
 import {Observable} from 'rxjs/Observable';
 
 @Injectable()
-export class BooksService {
+export class BookService {
 
   books: Book[] = [];
 
   constructor(private http: Http) {}
 
-  getTitle() {
-    return this.http.get('http://localhost:3000/title')
-      .delay(500)
-      .map((response: Response) => response.json())
-      .map((data) => data.value);
- }
+  // getTitle() {
+  //   return this.http.get('http://localhost:3000/title')
+  //     .delay(500)
+  //     .map((response: Response) => response.json())
+  //     .map((data) => data.value);
+  // }
 
   getBooks() {
     return this.http.get('http://localhost:3000/books')
@@ -24,15 +24,15 @@ export class BooksService {
         return Observable.throw('Server is not accessible. Try later.');
       })
       .do((books) => {
-      this.books = books;
-      // console.log(this.books);
+        this.books = books;
+        // console.log(this.books);
       });
   }
 
-  addBook(bookName: string) {
+  addBook(authorName: string, bookName: string) {
     const book = {
       index: '1000',
-      author: 'test',
+      author: authorName,
       name: bookName,
       orderDate: '',
       user: ''

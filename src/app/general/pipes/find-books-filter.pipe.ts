@@ -1,9 +1,9 @@
 import { Pipe, PipeTransform } from '@angular/core';
 
 @Pipe({
-  name: 'bookFilter'
+  name: 'findBooksFilter'
 })
-export class BookFilterPipe implements PipeTransform {
+export class FindBooksFilterPipe implements PipeTransform {
 
   transform(bookList, searchString: string, searchFieldName: string) {
     if (bookList.length === 0 || searchString.trim() === '' ) {
@@ -13,3 +13,6 @@ export class BookFilterPipe implements PipeTransform {
   }
 
 }
+
+
+

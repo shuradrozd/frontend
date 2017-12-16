@@ -1,23 +1,22 @@
 import { Component } from '@angular/core';
-import {BooksService} from '../books.service';
-import {Book} from '../interfaces/book';
+import { Book } from '../../general/models/book.model';
+import {BookService} from '../../general/services/book.service';
 
 @Component({
-  selector: 'app-search-book',
-  templateUrl: './search-book.component.html',
-  styleUrls: ['./search-book.component.css']
+  selector: 'app-find-books-page',
+  templateUrl: './find-books-page.component.html',
+  styleUrls: ['./find-books-page.component.css']
 })
-
-export class SearchBookComponent {
+export class FindBooksPageComponent {
 
   books: Book[] = [];
   searchString = '';
   searchFieldName = '';
 
-  constructor(private booksService: BooksService) {}
+  constructor(private bookService: BookService) {}
 
   loadBooks() {
-    this.booksService.getBooks()
+    this.bookService.getBooks()
       .subscribe(
         (books: Book[]) => {
           this.books = books;
@@ -36,7 +35,7 @@ export class SearchBookComponent {
 
   setOrderDate(book: Book) {
     const orderDate = new Date().toDateString();
-    this.booksService.changeOrderDate(book, orderDate)
+    this.bookService.changeOrderDate(book, orderDate)
       .subscribe((data) => {
         console.log(data);
       });
@@ -44,7 +43,7 @@ export class SearchBookComponent {
 
   cancelOrderDate(book: Book) {
     const orderDate = '';
-    this.booksService.changeOrderDate(book, orderDate)
+    this.bookService.changeOrderDate(book, orderDate)
       .subscribe((data) => {
         console.log(data);
       });

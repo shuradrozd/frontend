@@ -11,9 +11,10 @@
                   placeholder="Enter your email"
                   formControlName="email"
                 >
-                <span *ngIf="form.get('email').invalid && form.get('email').touched">
+                <span *ngIf="(form.get('email').invalid && form.get('email').touched)">
                   <span *ngIf="form.get('email')['errors']['required']">The email should not be blank.</span>
                   <span *ngIf="form.get('email')['errors']['email'] && form.get('email').value">Please enter correct email.</span>
+                  <span *ngIf="form.get('email')['errors']['forbiddenEmail']">This email is used</span>
                 </span>
               </div>
             </div>
