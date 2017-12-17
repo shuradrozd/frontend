@@ -1,4 +1,6 @@
 import { Component, OnInit } from '@angular/core';
+import {User} from "../general/models/user.model";
+
 
 @Component({
   selector: 'app-books',
@@ -7,10 +9,11 @@ import { Component, OnInit } from '@angular/core';
 })
 export class BooksComponent implements OnInit {
   curDate  = new Date();
+  curUser: User = JSON.parse(window.localStorage.getItem('user'));
 
   constructor() { }
-
   ngOnInit() {
+    // console.log(currentUser.name);
   }
 
 }

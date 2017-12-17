@@ -2,7 +2,6 @@ import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
 import { AppComponent } from './app.component';
 import {HttpModule} from '@angular/http';
-import { PageBookComponent } from './page-book/page-book.component';
 import { NotFoundComponent } from './general/components/not-found/not-found.component';
 import {AuthServiceOld} from './auth.service';
 import {AuthGuard} from './auth-guard.service';
@@ -17,7 +16,6 @@ import {BooksModule} from './books/books.module';
 @NgModule({
   declarations: [
     AppComponent,
-    PageBookComponent,
     NotFoundComponent,
   ],
   imports: [

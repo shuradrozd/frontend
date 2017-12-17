@@ -29,9 +29,9 @@ export class BookService {
       });
   }
 
-  addBook(authorName: string, bookName: string) {
+  addBook(bookIndex: number, authorName: string, bookName: string) {
     const book = {
-      index: '1000',
+      index: bookIndex,
       author: authorName,
       name: bookName,
       orderDate: '',
@@ -45,8 +45,9 @@ export class BookService {
       });
   }
 
-  changeOrderDate(book: Book, orderDate: string) {
+  changeOrderDate(book: Book, orderDate: string, user: string) {
     book.orderDate = orderDate;
+    book.user = user;
     return this.http.put(`http://localhost:3000/books/${book.id}`, book)
       .map((response: Response) => response.json());
   }

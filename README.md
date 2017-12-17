@@ -1,8 +1,8 @@
 # Libraries Frontend Part
 
-This project was manage books catalog in some libraries. 
+This project manages books catalog in some libraries. 
 
-It let find books in one or some libraries, order books or return them.
+It lets find books in one or some libraries, order books or return them.
 
 ## Development server
 

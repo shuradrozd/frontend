@@ -16,13 +16,14 @@ export class AddBooksPageComponent implements OnInit {
 
   ngOnInit() {
     this.form = new FormGroup({
+      'bookIndex': new FormControl(null, [Validators.required, Validators.minLength(4)]),
       'authorName': new FormControl(null, [Validators.required]),
       'bookName': new FormControl(null, [Validators.required]),
     });
   }
   onSubmit() {
-    const {authorName, bookName} = this.form.value;
-    this.bookService.addBook(authorName, bookName)
+    const {bookIndex, authorName, bookName} = this.form.value;
+    this.bookService.addBook(bookIndex, authorName, bookName)
       .subscribe((book: Book) => {
         console.log(book);
       });

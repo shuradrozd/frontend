@@ -1,16 +1,15 @@
-<div class="title-block">
-  <h3 class="title">Add Books Page</h3>
-</div>
-<section class="section">
+ <h4>Add Books Page</h4>
+ <hr width="100%" color="#f00">
   <div class="row">
-    <div class="col-md-6 col-md-push-0">
-      <div class="card">
-        <div class="card-header bordered">
+    <div class="col-md-5 col-md-push-0">
+      <div class="panel">
+        <div class="panel-heading bordered">
           <div class="header-block">
-            <h3 class="title">Add Book</h3>
+            <h4>Add Book</h4>
+            <hr width="100%">
           </div>
         </div>
-        <div class="card-block">
+        <div class="panel-body">
           <form [formGroup]="form" (ngSubmit)="onSubmit()">
             <div class="form-group">
               <label class="control-label" for="library">Please choose Library</label>
@@ -21,9 +20,24 @@
                 <option>fourth library</option>
               </select>
             </div>
-            <div class="form-group">
+            <div
+              class="form-group"
+              [ngClass]="{'has-error': form.get('bookIndex').invalid && form.get('bookIndex').touched}"
+            >
               <label class="control-label" for="book-index">Book index</label>
-              <input type="text" id="book-index" class="form-control">
+              <input
+                type="text"
+                id="book-index"
+                class="form-control"
+                formControlName="bookIndex"
+              >
+              <span *ngIf="form.get('bookIndex').invalid && form.get('bookIndex').touched">
+                <span *ngIf="form.get('bookIndex')['errors']['required']">The index should not be blank</span>
+                <span *ngIf="form.get('bookIndex')['errors']['minlength']">
+                  The index should not be less than {{form.get('bookIndex')['errors']['minlength']['requiredLength']}} symbols.
+                  Now you enter only {{form.get('bookIndex')['errors']['minlength']['actualLength']}}
+                </span>
+              </span>
              </div>
             <div
               class="form-group"
@@ -59,10 +73,9 @@
               <label class="control-label" for="count">Book counts</label>
               <input type="number" value="1" id="count" class="form-control" min="1">
             </div>
-            <button type="submit" class="btn btn-primary" [disabled]="form.invalid">Add book</button>
+            <button type="submit" class="btn btn-info" [disabled]="form.invalid">Add book</button>
           </form>
         </div>
       </div>
     </div>
   </div>
-</section>
