@@ -4,22 +4,8 @@
     <header class="header">
       <div class="header-block header-block-search">
         <strong>{{curDate | date: 'dd'}}/{{curDate | date:'MM'}}/{{curDate | date: 'yyyy'}}</strong>
-      </div>
-      <div class="header-block header-block-nav">
-        <ul class="nav-profile">
-          <li class="profile dropdown">
-            <a class="nav-link dropdown-toggle" href="#" role="button">
-                                <span class="name">
-                                    Hello, {{curUser.name}}
-                                </span>
-            </a>
-            <div class="dropdown-menu profile-dropdown-menu">
-              <a class="dropdown-item" href="#"> <i class="fa fa-gear icon"></i>Сделать запись</a>
-              <div class="dropdown-divider"></div>
-              <a class="dropdown-item" href="#"><i class="fa fa-power-off icon"></i>Выйти</a>
-            </div>
-          </li>
-        </ul>
+        <span>&nbsp;</span>
+        <strong><span class="name">Hello, {{curUser.name}}</span></strong>
       </div>
     </header>
     <!--HEADER-->
@@ -32,7 +18,7 @@
           </div>
         </div>
         <nav class="menu">
-          <ul class="nav metismenu">
+          <ul class="nav">
             <li class="active">
               <a [routerLink]="['findBooks']" > <i class="glyphicon glyphicon-search"></i> Find Books </a>
             </li>
@@ -45,7 +31,7 @@
     </aside>
     <!--SIDEBAR-->
     <!--CONTENT-->
-    <article class="content dashboard-page">
+    <article class="content">
       <router-outlet></router-outlet>
     </article>
     <!--CONTENT-->
