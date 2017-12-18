@@ -1,6 +1,5 @@
 <div class="main">
   <div class="app">
-    <!--HEADER-->
     <header class="header">
       <div class="header-block header-block-search">
         <strong>{{curDate | date: 'dd'}}/{{curDate | date:'MM'}}/{{curDate | date: 'yyyy'}}</strong>
@@ -8,8 +7,6 @@
         <strong><span class="name">Hello, {{curUser.name}}</span></strong>
       </div>
     </header>
-    <!--HEADER-->
-    <!--SIDEBAR-->
     <aside class="sidebar">
       <div class="sidebar-container">
         <div class="sidebar-header">
@@ -19,22 +16,19 @@
         </div>
         <nav class="menu">
           <ul class="nav">
-            <li class="active">
+            <li routerLinkActive="active">
               <a [routerLink]="['findBooks']" > <i class="glyphicon glyphicon-search"></i> Find Books </a>
             </li>
-            <li>
+            <li routerLinkActive="active">
               <a [routerLink]="['addBooks']" > <i class="glyphicon glyphicon-plus"></i> Add Books </a>
             </li>
           </ul>
         </nav>
       </div>
     </aside>
-    <!--SIDEBAR-->
-    <!--CONTENT-->
     <article class="content">
       <router-outlet></router-outlet>
     </article>
-    <!--CONTENT-->
   </div>
 </div>
 
