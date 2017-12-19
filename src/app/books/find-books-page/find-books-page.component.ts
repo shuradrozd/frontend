@@ -23,7 +23,8 @@ export class FindBooksPageComponent implements OnInit {
   ngOnInit() {
     this.form = new FormGroup(
       {'searchValue': new FormControl(null, [Validators.required]),
-      'search': new FormControl(null, [Validators.required])
+      'search': new FormControl(null, [Validators.required]),
+      'library': new FormControl(null, [Validators.required])
     });
   }
 
@@ -36,8 +37,8 @@ export class FindBooksPageComponent implements OnInit {
   }
   loadBooks() {
     this.searchParam = true;
-    // const {seacrh} = this.form.value;
-    // console.log(seacrh);
+     // const {library} = this.form.value;
+     // console.log(library);
     this.bookService.getBooks()
       .subscribe(
         (books: Book[]) => {

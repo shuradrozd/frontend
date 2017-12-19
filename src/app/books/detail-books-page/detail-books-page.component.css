@@ -1,0 +1,16 @@
+.table {
+  text-align: left;
+}
+
+td.description  {
+  color: lightslategray;
+  text-align: left;
+  font-weight: bold;
+  width: 100px;
+}
+
+td {
+  color: lightslategray;
+  text-align: center;
+  font-weight: bold;
+}

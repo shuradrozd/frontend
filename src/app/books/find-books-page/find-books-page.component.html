@@ -15,6 +15,20 @@
       </div>
       <div class="panel-body">
         <form [formGroup]="form" (ngSubmit)="loadBooks()">
+          <div class="form-group">
+            <label class="control-label" for="library">Please choose Library</label>
+            <select
+              class="form-control"
+              id="library"
+              formControlName="library">
+              <option [selected]="true" disabled>Select library</option>
+              <option>all libraries</option>
+              <option>first library</option>
+              <option>second library</option>
+              <option>third library</option>
+              <option>fourth library</option>
+            </select>
+          </div>
           <div
             class="form-group"
             [ngClass]="{'has-error': form.get('searchValue').invalid && form.get('searchValue').touched}"
@@ -83,7 +97,7 @@
             <th>Ordered</th>
             <th>Detail</th>
           </tr>
-          <tr *ngFor="let book of books | findBooksFilter:searchString:searchFieldName; let lineNumber = index">
+          <tr *ngFor="let book of books | findBooksFilter:searchString:searchFieldName; index as lineNumber">
             <td><span class="badge order" [ngClass]="{'ordered': checkOrderDate(book.orderDate)}">{{lineNumber + 1}}</span>&nbsp;</td>
             <td><strong>{{book.author}}</strong></td>
             <td>{{book.name | uppercase}}</td>
@@ -91,7 +105,7 @@
             <td><a
               [routerLink]="['/books/findBooks', book.id]"
               [queryParams]="{index: book.index, author: book.author, name: book.name, orderDate: book.orderDate, user: book.user}"
-            class="btn btn-xs btn-info" (click)="changeDetailParam()">Detail</a></td>
+            class="btn btn-xs btn-info" (click)="changeDetailParam()">Show</a></td>
           </tr>
         </table>
       </div>
