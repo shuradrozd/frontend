@@ -17,15 +17,34 @@ export class BookService {
   //     .map((data) => data.value);
   // }
 
-  getBooks() {
-    return this.http.get('http://localhost:3000/books')
+  // getBooks() {
+  //   return this.http.get('http://localhost:3000/books')
+  //     .map((response: Response) => response.json())
+  //     .catch((error: Response) => {
+  //       return Observable.throw('Server is not accessible. Try later.');
+  //     })
+  //     .do((books) => {
+  //       this.books = books;
+  //       // console.log(this.books);
+  //     });
+  // }
+
+  getBooksByName(bookName: string) {
+    return this.http.get(`http://localhost:3000/books`, { params: {'name': bookName} })
       .map((response: Response) => response.json())
       .catch((error: Response) => {
         return Observable.throw('Server is not accessible. Try later.');
-      })
-      .do((books) => {
-        this.books = books;
-        // console.log(this.books);
+      });
+      // .do((books) => {
+      //   this.books = books;
+      // });
+  }
+
+  getBooksByAuthorName(authorName: string) {
+    return this.http.get(`http://localhost:3000/books`, { params: {'author': authorName} })
+      .map((response: Response) => response.json())
+      .catch((error: Response) => {
+        return Observable.throw('Server is not accessible. Try later.');
       });
   }
 
@@ -48,7 +67,7 @@ export class BookService {
   changeOrderDate(book: Book, orderDate: string, user: string) {
     book.orderDate = orderDate;
     book.user = user;
-    return this.http.put(`http://localhost:3000/books/${book.id}`, book)
+    return this.http.put(`http://localhost:3000/books/$book._id`, book)
       .map((response: Response) => response.json());
   }
 

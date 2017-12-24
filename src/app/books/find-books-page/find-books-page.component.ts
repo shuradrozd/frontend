@@ -38,15 +38,38 @@ export class FindBooksPageComponent implements OnInit {
   loadBooks() {
     this.searchParam = true;
      // const {library} = this.form.value;
-     // console.log(library);
-    this.bookService.getBooks()
-      .subscribe(
-        (books: Book[]) => {
-          this.books = books;
-        }, (error) => {
-          console.log(error);
-        });
+    if (this.searchFieldName === 'name') {
+      this.bookService.getBooksByName(this.searchString)
+        .subscribe(
+          (books: Book[]) => {
+            this.books = books;
+           }, (error) => {
+            console.log(error);
+          });
+    } else {
+      this.bookService.getBooksByAuthorName(this.searchString)
+        .subscribe(
+          (books: Book[]) => {
+            this.books = books;
+          }, (error) => {
+            console.log(error);
+          });
+    }
   }
+
+
+  // loadBooks() {
+  //   this.searchParam = true;
+  //   // const {library} = this.form.value;
+  //   //  console.log(typeof this.searchFieldName);
+  //     this.bookService.getBooks()
+  //       .subscribe(
+  //         (books: Book[]) => {
+  //           this.books = books;
+  //         }, (error) => {
+  //           console.log(error);
+  //         });
+  // }
 
   onChangeStatus(book: Book, user) {
     if (this.checkOrderDate(book.orderDate)) {
