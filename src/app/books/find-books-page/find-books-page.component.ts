@@ -46,7 +46,8 @@ export class FindBooksPageComponent implements OnInit {
            }, (error) => {
             console.log(error);
           });
-    } else {
+    }
+    if (this.searchFieldName === 'author') {
       this.bookService.getBooksByAuthorName(this.searchString)
         .subscribe(
           (books: Book[]) => {
@@ -56,20 +57,6 @@ export class FindBooksPageComponent implements OnInit {
           });
     }
   }
-
-
-  // loadBooks() {
-  //   this.searchParam = true;
-  //   // const {library} = this.form.value;
-  //   //  console.log(typeof this.searchFieldName);
-  //     this.bookService.getBooks()
-  //       .subscribe(
-  //         (books: Book[]) => {
-  //           this.books = books;
-  //         }, (error) => {
-  //           console.log(error);
-  //         });
-  // }
 
   onChangeStatus(book: Book, user) {
     if (this.checkOrderDate(book.orderDate)) {
