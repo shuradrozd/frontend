@@ -12,7 +12,7 @@ import {User} from '../../general/models/user.model';
 export class FindBooksPageComponent implements OnInit {
   form: FormGroup;
   books: Book[] = [];
-  // searchString = '';
+  searchString = '';
   searchNameString = '';
   searchAuthorString = '';
   searchFieldName = '';
@@ -42,9 +42,9 @@ export class FindBooksPageComponent implements OnInit {
   loadBooks() {
     this.searchParam = true;
 
-
     if (this.searchNameString || this.searchAuthorString) {
-      this.searchFieldName = 'name';
+      this.searchNameString ? this.searchFieldName = 'name' : this.searchFieldName = 'author' ;
+      this.searchNameString ? this.searchString = this.searchNameString : this.searchString = this.searchAuthorString ;
       this.bookService.getBooks(this.searchNameString, this.searchAuthorString)
         .subscribe(
           (books: Book[]) => {

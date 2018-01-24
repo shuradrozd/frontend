@@ -90,7 +90,8 @@
               <!--</label>-->
             <!--</div>-->
           <!--</div>-->
-        <button type="submit" class="btn btn-info" [disabled]="form.invalid">Search</button>
+        <button type="submit" class="btn btn-info">Search</button>
+        <!--<button type="submit" class="btn btn-info" [disabled]="form.invalid">Search</button>-->
           <a routerLink="/books/findBooks" class="btn btn-info glyphicon glyphicon-refresh" (click)="refreshParams()"></a>
         </form>
       </div>
@@ -113,7 +114,7 @@
             <th>Ordered</th>
             <th>Detail</th>
           </tr>
-          <tr *ngFor="let book of books | findBooksFilter:searchNameString:searchFieldName; index as lineNumber">
+          <tr *ngFor="let book of books | findBooksFilter:searchString:searchFieldName; index as lineNumber">
             <td><span class="badge order" [ngClass]="{'ordered': checkOrderDate(book.orderDate)}">{{lineNumber + 1}}</span>&nbsp;</td>
             <td><strong>{{book.author}}</strong></td>
             <td>{{book.name | uppercase}}</td>
