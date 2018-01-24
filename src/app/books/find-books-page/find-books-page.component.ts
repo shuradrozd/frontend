@@ -12,7 +12,9 @@ import {User} from '../../general/models/user.model';
 export class FindBooksPageComponent implements OnInit {
   form: FormGroup;
   books: Book[] = [];
-  searchString = '';
+  // searchString = '';
+  searchNameString = '';
+  searchAuthorString = '';
   searchFieldName = '';
   searchParam = false;
   detailParam = false;
@@ -22,8 +24,10 @@ export class FindBooksPageComponent implements OnInit {
 
   ngOnInit() {
     this.form = new FormGroup(
-      {'searchValue': new FormControl(null, [Validators.required]),
-      'search': new FormControl(null, [Validators.required]),
+      // {'searchValue': new FormControl(null, [Validators.required]),
+      {'searchNameValue': new FormControl(null, [Validators.required]),
+      'searchAuthorValue': new FormControl(null, [Validators.required]),
+      // 'search': new FormControl(null, [Validators.required]),
       'library': new FormControl(null, [Validators.required])
     });
   }
@@ -37,18 +41,11 @@ export class FindBooksPageComponent implements OnInit {
   }
   loadBooks() {
     this.searchParam = true;
-     // const {library} = this.form.value;
-    if (this.searchFieldName === 'name') {
-      this.bookService.getBooksByName(this.searchString)
-        .subscribe(
-          (books: Book[]) => {
-            this.books = books;
-           }, (error) => {
-            console.log(error);
-          });
-    }
-    if (this.searchFieldName === 'author') {
-      this.bookService.getBooksByAuthorName(this.searchString)
+
+
+    if (this.searchNameString || this.searchAuthorString) {
+      this.searchFieldName = 'name';
+      this.bookService.getBooks(this.searchNameString, this.searchAuthorString)
         .subscribe(
           (books: Book[]) => {
             this.books = books;
@@ -56,6 +53,29 @@ export class FindBooksPageComponent implements OnInit {
             console.log(error);
           });
     }
+     // const {library} = this.form.value;
+    // if (this.searchFieldName === 'name') {
+    // if (this.searchNameString) {
+    //   this.searchFieldName = 'name';
+    //   this.bookService.getBooksByName(this.searchNameString, this.searchAuthorString)
+    //     .subscribe(
+    //       (books: Book[]) => {
+    //         this.books = books;
+    //        }, (error) => {
+    //         console.log(error);
+    //       });
+    // }
+    // if (this.searchFieldName === 'author') {
+    // if (this.searchAuthorString) {
+    //   this.searchFieldName = 'author';
+    //   this.bookService.getBooksByAuthorName(this.searchAuthorString)
+    //     .subscribe(
+    //       (books: Book[]) => {
+    //         this.books = books;
+    //       }, (error) => {
+    //         console.log(error);
+    //       });
+    // }
   }
 
   onChangeStatus(book: Book, user) {
@@ -90,8 +110,8 @@ export class FindBooksPageComponent implements OnInit {
     return false;
   }
 
-  filter(event: Event ) {
-    this.searchFieldName = (<HTMLInputElement>event.target).value;
-  }
+  // filter(event: Event ) {
+  //   this.searchFieldName = (<HTMLInputElement>event.target).value;
+  // }
 
 }

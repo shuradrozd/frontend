@@ -31,49 +31,65 @@
           </div>
           <div
             class="form-group"
-            [ngClass]="{'has-error': form.get('searchValue').invalid && form.get('searchValue').touched}"
+            [ngClass]="{'has-error': form.get('searchNameValue').invalid && form.get('searchNameValue').touched}"
           >
-            <label class="control-label" for="search">Please enter search name</label>
+            <label class="control-label" for="searchName">Please enter search name</label>
             <input
               type="text"
               class="form-control"
-              id='search'
-              formControlName="searchValue"
-              [(ngModel)]="searchString"
+              id='searchName'
+              formControlName="searchNameValue"
+              [(ngModel)]="searchNameString"
             >
-            <span *ngIf="form.get('searchValue').invalid && form.get('searchValue').touched">
-              <span *ngIf="form.get('searchValue')['errors']['required']">The search field should not be blank</span>
+            <span *ngIf="form.get('searchNameValue').invalid && form.get('searchNameValue').touched">
+              <span *ngIf="form.get('searchNameValue')['errors']['required']">The search Name field should not be blank</span>
             </span>
           </div>
-          <div class="form-group">
-            <label class="control-label">Choose type of search</label>
-            <div>
-              <label class="form-check-label">
-                <input
-                  class="form-check-input"
-                  type="radio"
-                  name="search"
-                  value="author"
-                  (change)="filter($event)"
-                formControlName="search"
-                >
-                By Author:
-              </label>
-            </div>
-            <div>
-              <label class="form-check-label">
-                <input
-                  class="form-check-input"
-                  type="radio"
-                  name="search"
-                  value="name"
-                  (change)="filter($event)"
-                  formControlName="search"
-                >
-                By Name:
-              </label>
-            </div>
+          <div
+            class="form-group"
+            [ngClass]="{'has-error': form.get('searchAuthorValue').invalid && form.get('searchAuthorValue').touched}"
+          >
+            <label class="control-label" for="searchAuthor">Please enter search author</label>
+            <input
+              type="text"
+              class="form-control"
+              id='searchAuthor'
+              formControlName="searchAuthorValue"
+              [(ngModel)]="searchAuthorString"
+            >
+            <span *ngIf="form.get('searchAuthorValue').invalid && form.get('searchAuthorValue').touched">
+              <span *ngIf="form.get('searchAuthorValue')['errors']['required']">The search Author field should not be blank</span>
+            </span>
           </div>
+          <!--<div class="form-group">-->
+            <!--<label class="control-label">Choose type of search</label>-->
+            <!--<div>-->
+              <!--<label class="form-check-label">-->
+                <!--<input-->
+                  <!--class="form-check-input"-->
+                  <!--type="radio"-->
+                  <!--name="search"-->
+                  <!--value="author"-->
+                  <!--(change)="filter($event)"-->
+                <!--formControlName="search"-->
+                <!--&gt;-->
+                <!--By Author:-->
+              <!--</label>-->
+            <!--</div>-->
+            <!--<div>-->
+              <!--<label class="form-check-label">-->
+                <!--<input-->
+                  <!--class="form-check-input"-->
+                  <!--type="radio"-->
+                  <!--name="search"-->
+                  <!--value="name"-->
+                  <!--(change)="filter($event)"-->
+                  <!--formControlName="search"-->
+                <!--&gt;-->
+                <!--By Name:-->
+              <!--</label>-->
+            <!--</div>-->
+          <!--</div>-->
         <button type="submit" class="btn btn-info" [disabled]="form.invalid">Search</button>
           <a routerLink="/books/findBooks" class="btn btn-info glyphicon glyphicon-refresh" (click)="refreshParams()"></a>
         </form>
@@ -81,7 +97,7 @@
     </div>
   </div>
   <div class="col-md-6">
-    <div class="panel" *ngIf="searchParam && searchString">
+    <div class="panel" *ngIf="searchParam && (searchNameString || searchAuthorString)">
       <div class="panel-heading bordered">
         <div class="header-block">
           <h4>Founded results</h4>
@@ -97,7 +113,7 @@
             <th>Ordered</th>
             <th>Detail</th>
           </tr>
-          <tr *ngFor="let book of books | findBooksFilter:searchString:searchFieldName; index as lineNumber">
+          <tr *ngFor="let book of books | findBooksFilter:searchNameString:searchFieldName; index as lineNumber">
             <td><span class="badge order" [ngClass]="{'ordered': checkOrderDate(book.orderDate)}">{{lineNumber + 1}}</span>&nbsp;</td>
             <td><strong>{{book.author}}</strong></td>
             <td>{{book.name | uppercase}}</td>
@@ -112,7 +128,7 @@
     </div>
   </div>
   <div class="col-md-3">
-    <div class="panel" *ngIf="detailParam && searchString">
+    <div class="panel" *ngIf="detailParam && (searchNameString || searchAuthorString)">
       <div class="panel-heading bordered">
         <div class="header-block">
           <h4>Book Detailed Info</h4>

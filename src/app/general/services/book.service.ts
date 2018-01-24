@@ -29,24 +29,35 @@ export class BookService {
   //     });
   // }
 
-  getBooksByName(bookName: string) {
-    return this.http.get(`http://localhost:3000/books`, { params: {'name': bookName} })
+  getBooks(bookName: string, authorName: string) {
+    return this.http.get(`http://localhost:3000/books`, { params: {'name': bookName, 'author': authorName} })
       .map((response: Response) => response.json())
       .catch((error: Response) => {
         return Observable.throw('Server is not accessible. Try later.');
       });
+    // .do((books) => {
+    //   this.books = books;
+    // });
+  }
+
+   // getBooksByName(bookName: string) {
+  //   return this.http.get(`http://localhost:3000/books`, { params: {'name': bookName} })
+  //     .map((response: Response) => response.json())
+  //     .catch((error: Response) => {
+  //       return Observable.throw('Server is not accessible. Try later.');
+  //     });
       // .do((books) => {
       //   this.books = books;
       // });
-  }
+  // }
 
-  getBooksByAuthorName(authorName: string) {
-    return this.http.get(`http://localhost:3000/books`, { params: {'author': authorName} })
-      .map((response: Response) => response.json())
-      .catch((error: Response) => {
-        return Observable.throw('Server is not accessible. Try later.');
-      });
-  }
+  // getBooksByAuthorName(authorName: string) {
+  //   return this.http.get(`http://localhost:3000/books`, { params: {'author': authorName} })
+  //     .map((response: Response) => response.json())
+  //     .catch((error: Response) => {
+  //       return Observable.throw('Server is not accessible. Try later.');
+  //     });
+  // }
 
   addBook(bookIndex: number, authorName: string, bookName: string) {
     const book = {
