@@ -20,7 +20,9 @@
             <select
               class="form-control"
               id="library"
-              formControlName="library">
+              formControlName="library"
+              (change)="changeSelectLibrary()"
+            >
               <option [selected]="true" disabled>Select library</option>
               <option>all libraries</option>
               <option>first library</option>
@@ -31,34 +33,36 @@
           </div>
           <div
             class="form-group"
-            [ngClass]="{'has-error': form.get('searchNameValue').invalid && form.get('searchNameValue').touched}"
+            [ngClass]="{'has-error': (form.get('searchNameValue').invalid && form.get('searchNameValue').touched && form.get('searchAuthorValue').invalid && form.get('searchAuthorValue').touched) || (form.get('searchNameValue').invalid && form.get('searchNameValue').touched && form.get('searchAuthorValue').invalid)}"
           >
-            <label class="control-label" for="searchName">Please enter search name</label>
+            <label class="control-label" for="name">Please enter search name</label>
             <input
               type="text"
               class="form-control"
-              id='searchName'
+              id='name'
               formControlName="searchNameValue"
               [(ngModel)]="searchNameString"
+              (input)="filter($event)"
             >
             <span *ngIf="form.get('searchNameValue').invalid && form.get('searchNameValue').touched">
-              <span *ngIf="form.get('searchNameValue')['errors']['required']">The search Name field should not be blank</span>
+              <span *ngIf="(form.get('searchNameValue')['errors']['required'] && form.get('searchAuthorValue').invalid)">The two search fields should not be blank</span>
             </span>
           </div>
           <div
             class="form-group"
-            [ngClass]="{'has-error': form.get('searchAuthorValue').invalid && form.get('searchAuthorValue').touched}"
+          [ngClass]="{'has-error': (form.get('searchNameValue').invalid && form.get('searchNameValue').touched && form.get('searchAuthorValue').invalid && form.get('searchAuthorValue').touched) || (form.get('searchAuthorValue').invalid && form.get('searchAuthorValue').touched && form.get('searchNameValue').invalid) }"
           >
-            <label class="control-label" for="searchAuthor">Please enter search author</label>
+            <label class="control-label" for="author">Please enter search author</label>
             <input
               type="text"
               class="form-control"
-              id='searchAuthor'
+              id='author'
               formControlName="searchAuthorValue"
               [(ngModel)]="searchAuthorString"
+              (input)="filter($event)"
             >
             <span *ngIf="form.get('searchAuthorValue').invalid && form.get('searchAuthorValue').touched">
-              <span *ngIf="form.get('searchAuthorValue')['errors']['required']">The search Author field should not be blank</span>
+              <span *ngIf="(form.get('searchAuthorValue')['errors']['required'] && form.get('searchNameValue').invalid) ">The two search fields should not be blank</span>
             </span>
           </div>
           <!--<div class="form-group">-->
@@ -90,8 +94,8 @@
               <!--</label>-->
             <!--</div>-->
           <!--</div>-->
-        <button type="submit" class="btn btn-info">Search</button>
         <!--<button type="submit" class="btn btn-info" [disabled]="form.invalid">Search</button>-->
+        <button type="submit" class="btn btn-info" [disabled]="!validForm">Search</button>
           <a routerLink="/books/findBooks" class="btn btn-info glyphicon glyphicon-refresh" (click)="refreshParams()"></a>
         </form>
       </div>

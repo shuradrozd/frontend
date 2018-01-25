@@ -18,6 +18,8 @@ export class FindBooksPageComponent implements OnInit {
   searchFieldName = '';
   searchParam = false;
   detailParam = false;
+  selectLibrary = false;
+  validForm = false;
   curUser: User = JSON.parse(window.localStorage.getItem('user'));
 
   constructor(private bookService: BookService) {}
@@ -28,13 +30,18 @@ export class FindBooksPageComponent implements OnInit {
       {'searchNameValue': new FormControl(null, [Validators.required]),
       'searchAuthorValue': new FormControl(null, [Validators.required]),
       // 'search': new FormControl(null, [Validators.required]),
-      'library': new FormControl(null, [Validators.required])
+    'library': new FormControl(null, [Validators.required])
     });
   }
 
   changeDetailParam() {
     this.detailParam = true;
   }
+  changeSelectLibrary() {
+    this.selectLibrary = true;
+    this.validForm = this.selectLibrary;
+  }
+
   refreshParams() {
     this.detailParam = false;
     this.searchParam = false;
@@ -44,7 +51,7 @@ export class FindBooksPageComponent implements OnInit {
 
     if (this.searchNameString || this.searchAuthorString) {
       this.searchNameString ? this.searchFieldName = 'name' : this.searchFieldName = 'author' ;
-      this.searchNameString ? this.searchString = this.searchNameString : this.searchString = this.searchAuthorString ;
+       this.searchNameString ? this.searchString = this.searchNameString : this.searchString = this.searchAuthorString ;
       this.bookService.getBooks(this.searchNameString, this.searchAuthorString)
         .subscribe(
           (books: Book[]) => {
@@ -109,6 +116,19 @@ export class FindBooksPageComponent implements OnInit {
     }
     return false;
   }
+
+filter(event: Event ) {
+    this.searchFieldName = (<HTMLInputElement>event.target).id;
+    this.searchString = (<HTMLInputElement>event.target).value.trim();
+    console.log((<HTMLInputElement>event.target).id);
+    console.log((<HTMLInputElement>event.target).value);
+
+  if (this.searchNameString.trim() || this.searchAuthorString.trim()) {
+    this.validForm = this.selectLibrary && true;
+  } else {
+    this.validForm = false;
+  }
+}
 
   // filter(event: Event ) {
   //   this.searchFieldName = (<HTMLInputElement>event.target).value;
