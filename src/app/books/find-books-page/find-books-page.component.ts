@@ -39,7 +39,7 @@ export class FindBooksPageComponent implements OnInit {
   }
   changeSelectLibrary() {
     this.selectLibrary = true;
-    this.validForm = this.selectLibrary;
+    this.validForm = this.selectLibrary && ((this.searchNameString.trim().length > 0) || (this.searchAuthorString.trim().length > 0));
   }
 
   refreshParams() {
